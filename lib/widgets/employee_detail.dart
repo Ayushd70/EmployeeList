@@ -1,7 +1,7 @@
 import 'package:employee_list/configs/resources.dart';
 import 'package:flutter/material.dart';
 
-import '../models/empoloyee_details_model.dart';
+import '../models/employee_details_model.dart';
 import '../utils/app_helper.dart';
 
 class EmployeeDataWidget extends StatelessWidget {
