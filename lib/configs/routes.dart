@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../main.dart';
+import '../screens/home_screen.dart';
 
 class Routes {
   static const String flashScreen = 'flashScreen';
@@ -12,7 +13,7 @@ class Routes {
 
   static Route<dynamic> generateRoutesWithParams(RouteSettings settings) {
     return MaterialPageRoute(
-      builder: ((context) => MyHomePage(title: settings.arguments as String)),
+      builder: ((context) => HomeScreen(title: settings.arguments as String)),
     );
   }
 
