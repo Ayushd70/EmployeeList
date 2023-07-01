@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:employee_list/models/input_field_model.dart';
 
 class InputFieldWidget extends StatelessWidget {
-  InputFieldWidget({super.key, required this.inputfieldProps});
-  InputFieldDataModel inputfieldProps;
+  const InputFieldWidget({super.key, required this.inputfieldProps});
+  final InputFieldDataModel inputfieldProps;
 
   @override
   Widget build(BuildContext context) {
