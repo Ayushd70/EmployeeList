@@ -16,18 +16,18 @@ class ButtonWidget extends StatelessWidget {
             backgroundColor: buttonProps.buttonColor,
             shadowColor: Colors.transparent,
             shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(6))),
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(6))),
         onPressed: () => {},
         child: buttonProps.buttonType == ButtonType.textButton
             ? Text(
-          buttonProps.text!,
-          style: AppTextStyles.mediumRoboto14
-              .copyWith(color: buttonProps.textColor),
-        )
+                buttonProps.text!,
+                style: AppTextStyles.mediumRoboto14
+                    .copyWith(color: buttonProps.textColor),
+              )
             : SvgPicture.asset(
-          buttonProps.icon!,
-          width: 18,
-          height: 18,
-        ));
+                buttonProps.icon!,
+                width: 18,
+                height: 18,
+              ));
   }
 }
