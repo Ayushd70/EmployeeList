@@ -8,20 +8,29 @@ class InputFieldWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      keyboardType: inputfieldProps.keyboardType,
-      controller: inputfieldProps.myController,
-      style: AppTextStyles.regularRoboto16
-          .copyWith(color: AppColors.secondaryColor),
-      decoration: InputDecoration(
-          suffixIcon: InkWell(
-            onTap: () => {},
-            child: inputfieldProps.suffixIcon,
+    return SizedBox(
+      height: 40,
+      child: InkWell(
+        onTap: () =>
+            inputfieldProps.onTap != null ? inputfieldProps.onTap!() : null,
+        child: TextField(
+          enabled: inputfieldProps.type == InputType.text,
+          textAlign: TextAlign.left,
+          textAlignVertical: TextAlignVertical.center,
+          keyboardType: inputfieldProps.keyboardType,
+          controller: inputfieldProps.textController,
+          style: AppTextStyles.regularRoboto14
+              .copyWith(color: AppColors.secondaryColor),
+          decoration: InputDecoration(
+            contentPadding: const EdgeInsets.all(0),
+            suffixIcon: inputfieldProps.suffixIcon,
+            prefixIcon: inputfieldProps.prefixIcon,
+            hintText: inputfieldProps.hintText,
+            hintStyle: AppTextStyles.regularRoboto14
+                .copyWith(color: AppColors.lightgray),
           ),
-          prefixIcon: inputfieldProps.prefixIcon,
-          hintText: inputfieldProps.hintText,
-          hintStyle: AppTextStyles.regularRoboto16
-              .copyWith(color: AppColors.lightgray)),
+        ),
+      ),
     );
   }
 }

@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 
+enum InputType { text, prompt }
+
 class InputFieldDataModel {
   Widget? suffixIcon;
   Widget? prefixIcon;
   String hintText;
   String errMessage;
   bool isValid;
-  TextEditingController myController;
+  TextEditingController textController;
   TextInputType keyboardType;
-  Function onTextChange;
   bool showErrMessage;
+  InputType type;
+  Function? onTap;
 
   InputFieldDataModel({
     this.suffixIcon,
@@ -17,9 +20,10 @@ class InputFieldDataModel {
     required this.hintText,
     required this.errMessage,
     this.isValid = false,
-    required this.myController,
+    required this.textController,
     required this.keyboardType,
-    required this.onTextChange,
+    this.type = InputType.text,
     this.showErrMessage = false,
+    this.onTap,
   });
 }
