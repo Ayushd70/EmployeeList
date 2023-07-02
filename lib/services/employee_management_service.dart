@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:employee_list/local_db_models/employees_local_db_model.dart';
 import 'package:sqfentity_gen/sqfentity_gen.dart';
 

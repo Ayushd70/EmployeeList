@@ -52,7 +52,7 @@ class SequenceIdentitySequence extends SqfEntitySequenceBase {
   SequenceIdentitySequence() {
     sequenceName = 'identity';
     maxValue =
-    9007199254740991; /* optional. default is max int (9.223.372.036.854.775.807) */
+        9007199254740991; /* optional. default is max int (9.223.372.036.854.775.807) */
     cycle = false; /* optional. default is false; */
     minValue = 0; /* optional. default is 0 */
     incrementBy = 1; /* optional. default is 1 */
@@ -170,8 +170,8 @@ class Employee extends TableBase {
   @override
   Future<Map<String, dynamic>> toMapWithChildren(
       [bool forQuery = false,
-        bool forJson = false,
-        bool forView = false]) async {
+      bool forJson = false,
+      bool forView = false]) async {
     final map = <String, dynamic>{};
     map['id'] = id;
     if (name != null || !forView) {
@@ -244,10 +244,10 @@ class Employee extends TableBase {
 
   static Future<List<Employee>> fromMapList(List<dynamic> data,
       {bool preload = false,
-        List<String>? preloadFields,
-        bool loadParents = false,
-        List<String>? loadedFields,
-        bool setDefaultValues = true}) async {
+      List<String>? preloadFields,
+      bool loadParents = false,
+      List<String>? loadedFields,
+      bool setDefaultValues = true}) async {
     final List<Employee> objList = <Employee>[];
     loadedFields = loadedFields ?? [];
     for (final map in data) {
@@ -270,9 +270,9 @@ class Employee extends TableBase {
   /// <returns>returns [Employee] if exist, otherwise returns null
   Future<Employee?> getById(int? id,
       {bool preload = false,
-        List<String>? preloadFields,
-        bool loadParents = false,
-        List<String>? loadedFields}) async {
+      List<String>? preloadFields,
+      bool loadParents = false,
+      List<String>? loadedFields}) async {
     if (id == null) {
       return null;
     }
@@ -701,7 +701,7 @@ class EmployeeFilterBuilder extends ConjunctionBase {
     buildParameters();
     if (qparams.limit! > 0 || qparams.offset! > 0) {
       qparams.whereString =
-      'id IN (SELECT id from employees ${qparams.whereString!.isNotEmpty ? 'WHERE ${qparams.whereString}' : ''}${qparams.limit! > 0 ? ' LIMIT ${qparams.limit}' : ''}${qparams.offset! > 0 ? ' OFFSET ${qparams.offset}' : ''})';
+          'id IN (SELECT id from employees ${qparams.whereString!.isNotEmpty ? 'WHERE ${qparams.whereString}' : ''}${qparams.limit! > 0 ? ' LIMIT ${qparams.limit}' : ''}${qparams.offset! > 0 ? ' OFFSET ${qparams.offset}' : ''})';
     }
     return _mnEmployee!.updateBatch(qparams, values);
   }
@@ -717,9 +717,9 @@ class EmployeeFilterBuilder extends ConjunctionBase {
   @override
   Future<Employee?> toSingle(
       {bool preload = false,
-        List<String>? preloadFields,
-        bool loadParents = false,
-        List<String>? loadedFields}) async {
+      List<String>? preloadFields,
+      bool loadParents = false,
+      List<String>? loadedFields}) async {
     buildParameters(pSize: 1);
     final objFuture = _mnEmployee!.toList(qparams);
     final data = await objFuture;
@@ -743,14 +743,14 @@ class EmployeeFilterBuilder extends ConjunctionBase {
   @override
   Future<Employee> toSingleOrDefault(
       {bool preload = false,
-        List<String>? preloadFields,
-        bool loadParents = false,
-        List<String>? loadedFields}) async {
+      List<String>? preloadFields,
+      bool loadParents = false,
+      List<String>? loadedFields}) async {
     return await toSingle(
-        preload: preload,
-        preloadFields: preloadFields,
-        loadParents: loadParents,
-        loadedFields: loadedFields) ??
+            preload: preload,
+            preloadFields: preloadFields,
+            loadParents: loadParents,
+            loadedFields: loadedFields) ??
         Employee();
   }
 
@@ -779,9 +779,9 @@ class EmployeeFilterBuilder extends ConjunctionBase {
   @override
   Future<List<Employee>> toList(
       {bool preload = false,
-        List<String>? preloadFields,
-        bool loadParents = false,
-        List<String>? loadedFields}) async {
+      List<String>? preloadFields,
+      bool loadParents = false,
+      List<String>? loadedFields}) async {
     final data = await toMapList();
     final List<Employee> employeesData = await Employee.fromMapList(data,
         preload: preload,
@@ -930,9 +930,9 @@ class EmployeeFields {
 class EmployeeManager extends SqfEntityProvider {
   EmployeeManager()
       : super(EmployeesModel(),
-      tableName: _tableName,
-      primaryKeyList: _primaryKeyList,
-      whereStr: _whereStr);
+            tableName: _tableName,
+            primaryKeyList: _primaryKeyList,
+            whereStr: _whereStr);
   static const String _tableName = 'employees';
   static const List<String> _primaryKeyList = ['id'];
   static const String _whereStr = 'id=?';
