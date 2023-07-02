@@ -61,3 +61,7 @@ class AppIcons {
   static const String person = "assets/icons/person.svg";
   static const String rightArrow = "assets/icons/right_arrow.svg";
 }
+
+class AppImages {
+  static const String employNotFound = "assets/images/employ_not_found.svg";
+}
