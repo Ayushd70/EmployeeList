@@ -12,16 +12,20 @@ class ButtonWidget extends StatelessWidget {
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
             minimumSize: buttonProps.size,
-            backgroundColor: buttonProps.buttonColor,
+            backgroundColor: buttonProps.isActive!
+                ? buttonProps.textColor
+                : buttonProps.buttonColor,
             shadowColor: Colors.transparent,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(6))),
-        onPressed: () => {},
+        onPressed: () => buttonProps.buttonTappedFunction(),
         child: buttonProps.buttonType == ButtonType.textButton
             ? Text(
                 buttonProps.text!,
-                style: AppTextStyles.mediumRoboto14
-                    .copyWith(color: buttonProps.textColor),
+                style: AppTextStyles.mediumRoboto14.copyWith(
+                    color: buttonProps.isActive!
+                        ? buttonProps.buttonColor
+                        : buttonProps.textColor),
               )
             : SvgPicture.asset(
                 buttonProps.icon!,
