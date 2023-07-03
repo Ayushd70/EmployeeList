@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:employee_list/configs/resources.dart';
 import 'package:employee_list/utils/app_helper.dart';
 import 'package:flutter/material.dart';
@@ -9,16 +11,16 @@ import '../models/button_model.dart';
 import 'button.dart';
 
 class Calendar extends StatefulWidget {
-  const Calendar(
+  Calendar(
       {super.key,
       required this.calendarType,
       required this.onSaveButtonTapped,
       required this.firstDay,
       this.defaultDate});
-  final CalendarType calendarType;
-  final Function onSaveButtonTapped;
-  final DateTime? firstDay;
-  final DateTime? defaultDate;
+  CalendarType calendarType;
+  Function onSaveButtonTapped;
+  DateTime? firstDay;
+  DateTime? defaultDate;
 
   @override
   State<Calendar> createState() => _CalendarState();
@@ -155,22 +157,20 @@ class _CalendarState extends State<Calendar> {
   @override
   void initState() {
     super.initState();
-    setState(
-      () {
-        activeOption = widget.defaultDate != null
-            ? widget.calendarType == CalendarType.from
-                ? setFromSelectValue(widget.defaultDate)
-                : setToSelectValue(widget.defaultDate)
-            : widget.calendarType == CalendarType.from
-                ? "Today"
-                : "No date";
-        selectedDate = widget.defaultDate ??
-            (widget.calendarType == CalendarType.from ? DateTime.now() : null);
-        focusedDate = widget.defaultDate ?? widget.firstDay ?? DateTime.now();
-        firstDay = widget.firstDay ?? DateTime.utc(2000, 1, 1);
-        focusedDate = widget.defaultDate ?? widget.firstDay ?? DateTime.now();
-      },
-    );
+    setState(() {
+      activeOption = widget.defaultDate != null
+          ? widget.calendarType == CalendarType.from
+              ? setFromSelectValue(widget.defaultDate)
+              : setToSelectValue(widget.defaultDate)
+          : widget.calendarType == CalendarType.from
+              ? "Today"
+              : "No date";
+      selectedDate = widget.defaultDate ??
+          (widget.calendarType == CalendarType.from ? DateTime.now() : null);
+      focusedDate = widget.defaultDate ?? widget.firstDay ?? DateTime.now();
+      firstDay = widget.firstDay ?? DateTime.utc(2000, 1, 1);
+      focusedDate = widget.defaultDate ?? widget.firstDay ?? DateTime.now();
+    });
   }
 
   @override
@@ -214,7 +214,7 @@ class _CalendarState extends State<Calendar> {
                               icon: AppIcons.add,
                             ),
                           ),
-                        ),
+                        )
                       ],
                     ),
                     const SizedBox(
@@ -262,13 +262,14 @@ class _CalendarState extends State<Calendar> {
                         Expanded(
                           child: ButtonWidget(
                             buttonProps: ButtonDataModel(
-                                buttonColor: AppColors.lightBlue,
-                                buttonTappedFunction: onNoDateTapped,
-                                buttonType: ButtonType.textButton,
-                                textColor: AppColors.primaryColor,
-                                text: "No date",
-                                isActive: activeOption == "No date",
-                                icon: AppIcons.add),
+                              buttonColor: AppColors.lightBlue,
+                              buttonTappedFunction: onNoDateTapped,
+                              buttonType: ButtonType.textButton,
+                              textColor: AppColors.primaryColor,
+                              text: "No date",
+                              isActive: activeOption == "No date",
+                              icon: AppIcons.add,
+                            ),
                           ),
                         ),
                         const SizedBox(
@@ -277,15 +278,16 @@ class _CalendarState extends State<Calendar> {
                         Expanded(
                           child: ButtonWidget(
                             buttonProps: ButtonDataModel(
-                                buttonColor: AppColors.lightBlue,
-                                buttonTappedFunction: onTodayTapped,
-                                buttonType: ButtonType.textButton,
-                                textColor: AppColors.primaryColor,
-                                text: "Today",
-                                isActive: activeOption == "Today",
-                                icon: AppIcons.add),
+                              buttonColor: AppColors.lightBlue,
+                              buttonTappedFunction: onTodayTapped,
+                              buttonType: ButtonType.textButton,
+                              textColor: AppColors.primaryColor,
+                              text: "Today",
+                              isActive: activeOption == "Today",
+                              icon: AppIcons.add,
+                            ),
                           ),
-                        ),
+                        )
                       ],
                     ),
                   ],
@@ -295,22 +297,21 @@ class _CalendarState extends State<Calendar> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             IconButton(
-              onPressed: () {
-                _pageController.previousPage(
-                    duration: const Duration(microseconds: 100),
-                    curve: Curves.bounceIn);
-              },
-              icon: SvgPicture.asset(
-                AppIcons.calendarLeftArrow,
-                height: 24,
-                width: 24,
-                color: widget.calendarType == CalendarType.to
-                    ? firstDay!.month == focusedDate.month
-                        ? AppColors.lightgray
-                        : AppColors.gray
-                    : AppColors.gray,
-              ),
-            ),
+                onPressed: () {
+                  _pageController.previousPage(
+                      duration: const Duration(microseconds: 100),
+                      curve: Curves.bounceIn);
+                },
+                icon: SvgPicture.asset(
+                  AppIcons.calendarLeftArrow,
+                  height: 24,
+                  width: 24,
+                  color: widget.calendarType == CalendarType.to
+                      ? firstDay!.month == focusedDate.month
+                          ? AppColors.lightgray
+                          : AppColors.gray
+                      : AppColors.gray,
+                )),
             Text(
               "${AppResources.months[focusedDate.month - 1]} ${focusedDate.year}",
               style: AppTextStyles.mediumRoboto18
@@ -341,11 +342,9 @@ class _CalendarState extends State<Calendar> {
           headerVisible: false,
           focusedDay: focusedDate,
           onPageChanged: (focusedDay) => {
-            setState(
-              () {
-                focusedDate = focusedDay;
-              },
-            ),
+            setState(() {
+              focusedDate = focusedDay;
+            })
           },
           selectedDayPredicate: (day) {
             if (selectedDate != null) {
@@ -355,11 +354,9 @@ class _CalendarState extends State<Calendar> {
           },
           onDaySelected: (selectedDay, focusedDay) {
             if (selectedDay.month == focusedDay.month) {
-              setState(
-                () {
-                  selectedDate = selectedDay;
-                },
-              );
+              setState(() {
+                selectedDate = selectedDay;
+              });
             }
           },
           daysOfWeekStyle: DaysOfWeekStyle(
@@ -373,13 +370,11 @@ class _CalendarState extends State<Calendar> {
               width: 28,
               height: 28,
               alignment: Alignment.center,
-              child: Text(
-                day.day.toString(),
-                textAlign: TextAlign.center,
-                style: AppTextStyles.regularRoboto14.copyWith(
-                  color: AppColors.primaryColor,
-                ),
-              ),
+              child: Text(day.day.toString(),
+                  textAlign: TextAlign.center,
+                  style: AppTextStyles.regularRoboto14.copyWith(
+                    color: AppColors.primaryColor,
+                  )),
             ),
             disabledBuilder: (context, day, focusedDay) {
               if (day.month != focusedDay.month) {
@@ -392,9 +387,8 @@ class _CalendarState extends State<Calendar> {
                 child: Text(
                   day.day.toString(),
                   textAlign: TextAlign.center,
-                  style: AppTextStyles.regularRoboto14.copyWith(
-                    color: AppColors.extraLightgray,
-                  ),
+                  style: AppTextStyles.regularRoboto14
+                      .copyWith(color: AppColors.extraLightgray),
                 ),
               );
             },
@@ -428,9 +422,8 @@ class _CalendarState extends State<Calendar> {
                 child: Text(
                   day.day.toString(),
                   textAlign: TextAlign.center,
-                  style: AppTextStyles.regularRoboto14.copyWith(
-                    color: AppColors.secondaryColor,
-                  ),
+                  style: AppTextStyles.regularRoboto14
+                      .copyWith(color: AppColors.secondaryColor),
                 ),
               );
             },
@@ -442,10 +435,7 @@ class _CalendarState extends State<Calendar> {
           height: 58,
         ),
         Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 24,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
           decoration: const BoxDecoration(
             border: Border(
               top: BorderSide(
@@ -474,9 +464,8 @@ class _CalendarState extends State<Calendar> {
                             .format(selectedDate!)
                             .toString(),
                     textAlign: TextAlign.start,
-                    style: AppTextStyles.regularRoboto15.copyWith(
-                      color: AppColors.secondaryColor,
-                    ),
+                    style: AppTextStyles.regularRoboto15
+                        .copyWith(color: AppColors.secondaryColor),
                   )
                 ],
               ),
@@ -516,10 +505,10 @@ class _CalendarState extends State<Calendar> {
                     ),
                   ),
                 ],
-              ),
+              )
             ],
           ),
-        ),
+        )
       ],
     );
   }
