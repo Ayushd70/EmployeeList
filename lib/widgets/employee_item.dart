@@ -38,13 +38,13 @@ class EmployeeItemWidget extends StatelessWidget {
         ),
         Text(employee.designation!,
             style: AppTextStyles.regularRoboto14
-                .copyWith(color: AppColors.lightgray)),
+                .copyWith(color: AppColors.gray)),
         const SizedBox(
           height: 8,
         ),
         Text(AppHelper.toCamelCase(employeePeriod),
             style: AppTextStyles.regularRoboto14
-                .copyWith(color: AppColors.lightgray)),
+                .copyWith(color: AppColors.gray)),
       ],
     );
   }
