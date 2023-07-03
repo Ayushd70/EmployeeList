@@ -23,4 +23,14 @@ The libraries that this app is using as of now:
 - [sqfentity_gen](https://pub.dev/packages/sqfentity_gen)
 - [table_calendar](https://pub.dev/packages/table_calendar)
 
+## Architecture
+
+This project uses BLoC for managing state hence it naturally uses the BLoC Architecture and feature first/layered architecture.
+
+You can learn more about those from the following links;
+
+[BLoC Architecture](https://bloclibrary.dev/#/architecture)
+[Layered Architecture](https://verygood.ventures/blog/very-good-flutter-architecture)
+
+
 The app does not have a lot of moving parts, and the business logic end of things is tested properly.
