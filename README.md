@@ -1,16 +1,26 @@
-# employee_list
+# Employee List
 
-Application to manage employee list.
+Flutter application to display and to manage employee list in a company.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+## App Screenshots
 
-A few resources to get you started if this is your first Flutter project:
+<p align="center">
+</p>
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Tech stack
+The libraries that this app is using as of now:
+- [build_verify](https://pub.dev/packages/build_verify)
+- [build_runner](https://pub.dev/packages/build_runner)
+- [cupertino_icons](https://pub.dev/packages/cupertino_icons)
+- [flutter_bloc](https://pub.dev/packages/flutter_bloc)
+- [flutter_svg](https://pub.dev/packages/flutter_svg)
+- [focus_detector](https://pub.dev/packages/focus_detector)
+- [grouped_list](https://pub.dev/packages/grouped_list)
+- [http](https://pub.dev/packages/http)
+- [sqfentity](https://pub.dev/packages/sqfentity)
+- [sqfentity_gen](https://pub.dev/packages/sqfentity_gen)
+- [table_calendar](https://pub.dev/packages/table_calendar)
+
+The app does not have a lot of moving parts, and the business logic end of things is tested properly.
