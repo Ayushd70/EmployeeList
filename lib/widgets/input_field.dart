@@ -27,7 +27,7 @@ class InputFieldWidget extends StatelessWidget {
             prefixIcon: inputfieldProps.prefixIcon,
             hintText: inputfieldProps.hintText,
             hintStyle: AppTextStyles.regularRoboto14
-                .copyWith(color: AppColors.lightgray),
+                .copyWith(color: AppColors.gray),
           ),
         ),
       ),
