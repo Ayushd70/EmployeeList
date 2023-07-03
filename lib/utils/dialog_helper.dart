@@ -3,47 +3,53 @@ import 'package:flutter/material.dart';
 import '../configs/resources.dart';
 
 class DialogHelper {
+  static showDeleteDialog(BuildContext context, Function()? onNoTapped,
+      Function()? onDeleteTapped) {
+    Widget cancelButton = TextButton(
+      onPressed: onNoTapped,
+      child: const Text("No"),
+    );
+    Widget continueButton = TextButton(
+      onPressed: onDeleteTapped,
+      child: const Text("Delete"),
+    );
+
+    AlertDialog alert = AlertDialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+      title: Text(
+        "Confirmation",
+        style: AppTextStyles.mediumRoboto18
+            .copyWith(color: AppColors.secondaryColor),
+      ),
+      content: Text(
+        "Would you like to delete this employee?",
+        style: AppTextStyles.regularRoboto15
+            .copyWith(color: AppColors.secondaryColor, height: 1.5),
+      ),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
   static void showSnackbar(String message, BuildContext context) {
     SnackBar snackBar = SnackBar(
       backgroundColor: AppColors.secondaryColor,
       content: Text(
         message,
-        style: AppTextStyles.regularRoboto16.copyWith(
-          color: AppColors.white,
-        ),
+        style: AppTextStyles.regularRoboto16.copyWith(color: AppColors.white),
       ),
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  }
-
-  Future<void> showLoading(BuildContext context, {String? message}) {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) => SimpleDialog(
-        children: [
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CircularProgressIndicator(
-                  color: Theme.of(context).primaryColor,
-                  strokeWidth: 8,
-                ),
-                Text(
-                  message ?? 'loading...',
-                  style: AppTextStyles.mediumRoboto14.copyWith(
-                    color: AppColors.white,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void hideLoading(BuildContext context) {
-    return Navigator.of(context).pop();
   }
 }
