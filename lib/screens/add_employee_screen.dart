@@ -19,7 +19,7 @@ class AddEmployeeScreen extends StatelessWidget {
   TextEditingController employeeNameController = TextEditingController();
   TextEditingController designationController = TextEditingController();
   TextEditingController fromPeriodController =
-  TextEditingController(text: "Today");
+      TextEditingController(text: "Today");
   TextEditingController toPeriodController = TextEditingController();
   DateTime? fromDate = DateTime.now();
   DateTime? toDate;
@@ -29,21 +29,12 @@ class AddEmployeeScreen extends StatelessWidget {
 
   setFromSelectedValue(DateTime? selectedDate) {
     fromDate = selectedDate;
+    if (toDate != null && selectedDate!.isAfter(toDate!)) {
+      toPeriodController.text = "No Date";
+      toDate = null;
+    }
     if (selectedDate!.isSameDate(DateTime.now())) {
       fromPeriodController.text = "Today";
-
-      return;
-    }
-    if (selectedDate.isSameDate(DateTime.now().next(DateTime.monday))) {
-      fromPeriodController.text = "Next Monday";
-      return;
-    }
-    if (selectedDate.isSameDate(DateTime.now().next(DateTime.tuesday))) {
-      fromPeriodController.text = "Next Tuesday";
-      return;
-    }
-    if (selectedDate.isSameDate(DateTime.now().add(const Duration(days: 7)))) {
-      fromPeriodController.text = "After 1 week";
       return;
     }
     fromPeriodController.text =
@@ -145,14 +136,15 @@ class AddEmployeeScreen extends StatelessWidget {
         ),
         actions: employeeData != null
             ? [
-          IconButton(
-              onPressed: onDeleteTapped,
-              icon: SvgPicture.asset(
-                AppIcons.delete,
-                height: 24,
-                width: 24,
-              ))
-        ]
+                IconButton(
+                    onPressed: onDeleteTapped,
+                    icon: SvgPicture.asset(
+                      AppIcons.delete,
+                      height: 24,
+                      width: 24,
+                    ),
+                ),
+              ]
             : [],
       ),
       body: Column(
@@ -260,7 +252,7 @@ class AddEmployeeScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
             decoration: const BoxDecoration(
                 border:
-                Border(top: BorderSide(color: AppColors.extraLightgray))),
+                    Border(top: BorderSide(color: AppColors.extraLightgray),),),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -288,7 +280,7 @@ class AddEmployeeScreen extends StatelessWidget {
                           buttonType: ButtonType.textButton,
                           textColor: null,
                           text: "Save",
-                          icon: AppIcons.add)),
+                          icon: AppIcons.add,),),
                 ),
               ],
             ),
