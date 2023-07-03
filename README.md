@@ -9,7 +9,7 @@ Flutter application to display and to manage employee list in a company.
 </p>
 
 
-## Tech stack
+## Tech Stack
 The libraries that this app is using as of now:
 - [build_verify](https://pub.dev/packages/build_verify)
 - [build_runner](https://pub.dev/packages/build_runner)
@@ -33,7 +33,35 @@ You can learn more about those from the following links;
 [Layered Architecture](https://verygood.ventures/blog/very-good-flutter-architecture)
 
 
-The app does not have a lot of moving parts, and the business logic end of things is tested properly.
+## Run Locally
+
+Make sure that you have flutter and dart installed and setup. If you don't then refer to the official installation instructions at [Flutter Docs](https://flutter.dev/docs/get-started/install)
+
+Then run the following commands
+
+Clone the project
+
+```bash
+  git clone https://github.com/Ayushd70/EmployeeList employee_list
+```
+
+Go to the project directory
+
+```bash
+  cd employee_list
+```
+
+Fetch dependencies and generate routes
+
+```bash
+  flutter pub get && flutter pub run build_runner build
+```
+
+Run the app
+
+```bash
+  flutter run
+```
 
 ## License
 
