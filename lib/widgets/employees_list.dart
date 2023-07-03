@@ -10,6 +10,7 @@ import 'employee_item.dart';
 class EmployeesListWidgets extends StatelessWidget {
   EmployeesListWidgets(
       {super.key, required this.employees, required this.onItemDelete});
+
   final List<Employee> employees;
   final Function onItemDelete;
 
@@ -29,38 +30,40 @@ class EmployeesListWidgets extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         color: AppColors.extraLightgray,
         child: Text(
-            value.toPeriod != null ? "Previous employees" : "Current employees",
-            style: AppTextStyles.mediumRoboto16.copyWith(
-              color: AppColors.primaryColor,
-            )),
+          value.toPeriod != null ? "Previous employees" : "Current employees",
+          style: AppTextStyles.mediumRoboto16.copyWith(
+            color: AppColors.primaryColor,
+          ),
+        ),
       ),
       itemBuilder: (context, element) {
-        return Container(
-          decoration: const BoxDecoration(
-            border: Border(
-              top: BorderSide(
-                color: AppColors.extraLightgray,
+        return InkWell(
+          onTap: () => {
+            onEmployeeItemTapped(element),
+          },
+          child: Container(
+            decoration: const BoxDecoration(
+              border: Border(
+                top: BorderSide(
+                  color: AppColors.extraLightgray,
+                ),
               ),
             ),
-          ),
-          child: Dismissible(
-            key: UniqueKey(),
-            background: ColoredBox(
-              color: AppColors.red,
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: Padding(
+            child: Dismissible(
+              key: UniqueKey(),
+              background: ColoredBox(
+                color: AppColors.red,
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: Padding(
                     padding: const EdgeInsets.all(16.0),
-                    child: SvgPicture.asset(AppIcons.delete)),
+                    child: SvgPicture.asset(AppIcons.delete),
+                  ),
+                ),
               ),
-            ),
-            direction: DismissDirection.endToStart,
-            onDismissed: (direction) {
-              onItemDelete(element);
-            },
-            child: InkWell(
-              onTap: () => {
-                onEmployeeItemTapped(element),
+              direction: DismissDirection.endToStart,
+              onDismissed: (direction) {
+                onItemDelete(element);
               },
               child: Padding(
                 padding:
