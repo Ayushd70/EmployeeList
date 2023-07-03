@@ -11,16 +11,18 @@ import '../models/button_model.dart';
 import 'button.dart';
 
 class Calendar extends StatefulWidget {
-  Calendar(
-      {super.key,
-      required this.calendarType,
-      required this.onSaveButtonTapped,
-      required this.firstDay,
-      this.defaultDate});
-  CalendarType calendarType;
-  Function onSaveButtonTapped;
-  DateTime? firstDay;
-  DateTime? defaultDate;
+  const Calendar({
+    super.key,
+    required this.calendarType,
+    required this.onSaveButtonTapped,
+    required this.firstDay,
+    this.defaultDate,
+  });
+
+  final CalendarType calendarType;
+  final Function onSaveButtonTapped;
+  final DateTime? firstDay;
+  final DateTime? defaultDate;
 
   @override
   State<Calendar> createState() => _CalendarState();
@@ -432,10 +434,10 @@ class _CalendarState extends State<Calendar> {
           ),
         ),
         const SizedBox(
-          height: 58,
+          height: 32,
         ),
         Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+          padding: const EdgeInsets.all(16),
           decoration: const BoxDecoration(
             border: Border(
               top: BorderSide(
