@@ -13,7 +13,7 @@ dynamic calendarBottomSheet(BuildContext context, CalendarType calendarType,
           insetPadding: const EdgeInsets.all(16),
           contentPadding: const EdgeInsets.all(3),
           content: SizedBox(
-            width: AppResources.width,
+            width: AppResources.getWidth(context),
             child: Calendar(
               calendarType: calendarType,
               onSaveButtonTapped: onSaveButtonTapped,

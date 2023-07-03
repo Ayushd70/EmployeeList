@@ -15,17 +15,30 @@ import '../models/input_field_model.dart';
 import '../widgets/button.dart';
 import '../widgets/input_field.dart';
 
-class AddEmployeeScreen extends StatelessWidget {
-  TextEditingController employeeNameController = TextEditingController();
-  TextEditingController designationController = TextEditingController();
-  TextEditingController fromPeriodController =
-      TextEditingController(text: "Today");
-  TextEditingController toPeriodController = TextEditingController();
-  DateTime? fromDate = DateTime.now();
-  DateTime? toDate;
-  Employee? employeeData;
+class AddEmployeeScreen extends StatefulWidget {
+  const AddEmployeeScreen({
+    super.key,
+    this.employeeData,
+  });
 
-  AddEmployeeScreen({super.key, this.employeeData});
+  final Employee? employeeData;
+
+  @override
+  State<AddEmployeeScreen> createState() => _AddEmployeeScreenState();
+}
+
+class _AddEmployeeScreenState extends State<AddEmployeeScreen> {
+  late final TextEditingController employeeNameController;
+
+  late final TextEditingController designationController;
+
+  late final TextEditingController fromPeriodController;
+
+  late final TextEditingController toPeriodController;
+
+  late DateTime? fromDate;
+
+  late DateTime? toDate;
 
   setFromSelectedValue(DateTime? selectedDate) {
     fromDate = selectedDate;
@@ -57,6 +70,28 @@ class AddEmployeeScreen extends StatelessWidget {
 
   onDesignationSeleted(String selectedValue) {
     designationController.text = selectedValue;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    employeeNameController = TextEditingController();
+    designationController = TextEditingController();
+    toPeriodController = TextEditingController(text: "Today");
+    fromPeriodController = TextEditingController();
+
+    fromDate = DateTime.now();
+  }
+
+  @override
+  void dispose() {
+    employeeNameController.dispose();
+    designationController.dispose();
+    toPeriodController.dispose();
+    fromPeriodController.dispose();
+
+    super.dispose();
   }
 
   @override
@@ -92,7 +127,7 @@ class AddEmployeeScreen extends StatelessWidget {
         return;
       }
       Employee employee = Employee(
-          id: employeeData != null ? employeeData!.id : null,
+          id: widget.employeeData != null ? widget.employeeData!.id : null,
           name: employeeNameController.text,
           designation: designationController.text,
           fromPeriod: fromDate,
@@ -106,7 +141,7 @@ class AddEmployeeScreen extends StatelessWidget {
     onDeleteTapped() {
       DialogHelper.showDeleteDialog(context, () => Navigator.pop(context), () {
         BlocProvider.of<EmployeeDataManipulationBloc>(context)
-            .add(DeleteEmployee(employeeData!));
+            .add(DeleteEmployee(widget.employeeData!));
         FocusManager.instance.primaryFocus?.unfocus();
 
         Navigator.popUntil(context, (route) => route.isFirst);
@@ -118,31 +153,31 @@ class AddEmployeeScreen extends StatelessWidget {
       Navigator.pop(context);
     }
 
-    if (employeeData != null) {
-      employeeNameController.text = employeeData!.name!;
-      designationController.text = employeeData!.designation!;
-      setFromSelectedValue(employeeData!.fromPeriod);
-      setToSelectedValue(employeeData!.toPeriod);
+    if (widget.employeeData != null) {
+      employeeNameController.text = widget.employeeData!.name!;
+      designationController.text = widget.employeeData!.designation!;
+      setFromSelectedValue(widget.employeeData!.fromPeriod);
+      setToSelectedValue(widget.employeeData!.toPeriod);
     }
 
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Text(
-          employeeData == null
+          widget.employeeData == null
               ? "Add Employee Details"
               : "Edit Employee Details",
           style: AppTextStyles.mediumRoboto18,
         ),
-        actions: employeeData != null
+        actions: widget.employeeData != null
             ? [
                 IconButton(
-                    onPressed: onDeleteTapped,
-                    icon: SvgPicture.asset(
-                      AppIcons.delete,
-                      height: 24,
-                      width: 24,
-                    ),
+                  onPressed: onDeleteTapped,
+                  icon: SvgPicture.asset(
+                    AppIcons.delete,
+                    height: 24,
+                    width: 24,
+                  ),
                 ),
               ]
             : [],
@@ -186,7 +221,7 @@ class AddEmployeeScreen extends StatelessWidget {
                   ),
                   hintText: "Select role",
                   errMessage: "Please select a role",
-                  textController: employeeData != null
+                  textController: widget.employeeData != null
                       ? designationController
                       : designationController,
                   keyboardType: TextInputType.text,
@@ -251,8 +286,10 @@ class AddEmployeeScreen extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
             decoration: const BoxDecoration(
-                border:
-                    Border(top: BorderSide(color: AppColors.extraLightgray),),),
+              border: Border(
+                top: BorderSide(color: AppColors.extraLightgray),
+              ),
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -274,13 +311,15 @@ class AddEmployeeScreen extends StatelessWidget {
                 SizedBox(
                   width: 75,
                   child: ButtonWidget(
-                      buttonProps: ButtonDataModel(
-                          buttonColor: AppColors.primaryColor,
-                          buttonTappedFunction: onSaveTapped,
-                          buttonType: ButtonType.textButton,
-                          textColor: null,
-                          text: "Save",
-                          icon: AppIcons.add,),),
+                    buttonProps: ButtonDataModel(
+                      buttonColor: AppColors.primaryColor,
+                      buttonTappedFunction: onSaveTapped,
+                      buttonType: ButtonType.textButton,
+                      textColor: null,
+                      text: "Save",
+                      icon: AppIcons.add,
+                    ),
+                  ),
                 ),
               ],
             ),

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 class AppResources {
-  static double width =
-      MediaQueryData.fromWindow(WidgetsBinding.instance.window).size.width;
+  static double getWidth(BuildContext context) {
+    return MediaQueryData.fromView(View.of(context)).size.width;
+  }
 
-  static double height =
-      MediaQueryData.fromWindow(WidgetsBinding.instance.window).size.height;
+  static double getHeight(BuildContext context) {
+    return MediaQueryData.fromView(View.of(context)).size.height;
+  }
 
   static List<String> designations = [
     "Product Designer",
@@ -62,25 +64,25 @@ class AppColors {
 
 class AppTextStyles {
   static const TextStyle mediumRoboto14 =
-  TextStyle(fontSize: 14, fontWeight: FontWeight.w500);
+      TextStyle(fontSize: 14, fontWeight: FontWeight.w500);
 
   static TextStyle mediumRoboto16 =
-  const TextStyle(fontSize: 16, fontWeight: FontWeight.w500);
+      const TextStyle(fontSize: 16, fontWeight: FontWeight.w500);
 
   static TextStyle mediumRoboto18 =
-  const TextStyle(fontSize: 18, fontWeight: FontWeight.w500);
+      const TextStyle(fontSize: 18, fontWeight: FontWeight.w500);
 
   static TextStyle regularRoboto12 =
-  const TextStyle(fontSize: 12, fontWeight: FontWeight.w400);
+      const TextStyle(fontSize: 12, fontWeight: FontWeight.w400);
 
   static TextStyle regularRoboto14 =
-  const TextStyle(fontSize: 14, fontWeight: FontWeight.w400);
+      const TextStyle(fontSize: 14, fontWeight: FontWeight.w400);
 
   static TextStyle regularRoboto15 =
-  const TextStyle(fontSize: 15, fontWeight: FontWeight.w400);
+      const TextStyle(fontSize: 15, fontWeight: FontWeight.w400);
 
   static TextStyle regularRoboto16 =
-  const TextStyle(fontSize: 16, fontWeight: FontWeight.w400);
+      const TextStyle(fontSize: 16, fontWeight: FontWeight.w400);
 }
 
 class AppIcons {
@@ -102,3 +104,4 @@ class AppImages {
 }
 
 enum CalendarType { from, to }
+

@@ -8,8 +8,8 @@ import '../local_db_models/employees_local_db_model.dart';
 import 'employee_item.dart';
 
 class EmployeesListWidgets extends StatelessWidget {
-  EmployeesListWidgets(
-      {super.key, required this.employees, required this.onItemDelete});
+  const EmployeesListWidgets(
+      {super.key, required this.employees, required this.onItemDelete,});
 
   final List<Employee> employees;
   final Function onItemDelete;
