@@ -8,8 +8,11 @@ import '../local_db_models/employees_local_db_model.dart';
 import 'employee_item.dart';
 
 class EmployeesListWidgets extends StatelessWidget {
-  const EmployeesListWidgets(
-      {super.key, required this.employees, required this.onItemDelete,});
+  const EmployeesListWidgets({
+    super.key,
+    required this.employees,
+    required this.onItemDelete,
+  });
 
   final List<Employee> employees;
   final Function onItemDelete;
@@ -22,15 +25,18 @@ class EmployeesListWidgets extends StatelessWidget {
 
     return GroupedListView(
       elements: employees,
-      groupBy: (element) =>
-          element.toPeriod != null ? "Previous employees" : "Current employees",
+      groupBy: (element) => (element.toPeriod?.millisecondsSinceEpoch ??
+                  DateTime.now().millisecondsSinceEpoch) <
+              DateTime.now().millisecondsSinceEpoch
+          ? "Previous employees"
+          : "Current employees",
       useStickyGroupSeparators: true,
       stickyHeaderBackgroundColor: AppColors.extraLightgray,
       groupHeaderBuilder: (Employee value) => Container(
         padding: const EdgeInsets.all(16),
         color: AppColors.extraLightgray,
         child: Text(
-          value.toPeriod != null ? "Previous employees" : "Current employees",
+          (value.toPeriod?.millisecondsSinceEpoch ?? DateTime.now().millisecondsSinceEpoch ) < DateTime.now().millisecondsSinceEpoch ? "Previous employees" : "Current employees",
           style: AppTextStyles.mediumRoboto16.copyWith(
             color: AppColors.primaryColor,
           ),

@@ -82,7 +82,7 @@ class _AddEmployeeScreenState extends State<AddEmployeeScreen> {
     fromPeriodController = TextEditingController();
 
     fromDate = DateTime.now();
-    toDate = null;
+    toDate = DateTime.now();
   }
 
   @override
@@ -106,7 +106,7 @@ class _AddEmployeeScreenState extends State<AddEmployeeScreen> {
 
     onFromPeriodTapped() {
       calendarBottomSheet(
-          context, CalendarType.from, setFromSelectedValue, null, fromDate);
+          context, CalendarType.from, setFromSelectedValue, fromDate, null);
     }
 
     onToPeriodTapped() {
