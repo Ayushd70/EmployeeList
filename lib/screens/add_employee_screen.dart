@@ -82,6 +82,7 @@ class _AddEmployeeScreenState extends State<AddEmployeeScreen> {
     fromPeriodController = TextEditingController();
 
     fromDate = DateTime.now();
+    toDate = null;
   }
 
   @override
