@@ -6,6 +6,15 @@ Flutter application to display and to manage employee list in a company.
 ## App Screenshots
 
 <p align="center">
+  <img width="32%" src="screenshots/ios-1.png?raw=true">
+  <img width="32%" src="screenshots/ios-2.png?raw=true">
+  <img width="32%" src="screenshots/ios-3.png?raw=true">
+  <img width="32%" src="screenshots/ios-4.png?raw=true">
+  <img width="32%" src="screenshots/ios-5.png?raw=true">
+  <img width="32%" src="screenshots/ios-6.png?raw=true">
+  <img width="32%" src="screenshots/ios-7.png?raw=true">
+  <img width="32%" src="screenshots/ios-8.png?raw=true">
+  <img width="32%" src="screenshots/ios-9.png?raw=true">
 </p>
 
 
