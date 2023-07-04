@@ -20,6 +20,7 @@ dependencies:
   sqfentity: ^2.3.0+5
   sqfentity_gen: ^2.3.0+4
   table_calendar: ^3.0.8
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
