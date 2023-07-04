@@ -106,7 +106,7 @@ class _AddEmployeeScreenState extends State<AddEmployeeScreen> {
 
     onFromPeriodTapped() {
       calendarBottomSheet(
-          context, CalendarType.from, setFromSelectedValue, fromDate, null);
+          context, CalendarType.from, setFromSelectedValue, null, fromDate);
     }
 
     onToPeriodTapped() {
